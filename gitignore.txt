@@ -1,0 +1,6 @@
+#ignorando esses arquivos
+*.exe
+*.dll
+*.so
+*.dylib
+*.class
