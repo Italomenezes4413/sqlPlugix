@@ -2,4 +2,4 @@ mysql.connector
 selenium
 icecream
 pyodbc
-socket
+mysql.connector
