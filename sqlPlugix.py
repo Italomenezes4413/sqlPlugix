@@ -2,6 +2,10 @@ import pyodbc
 import mysql.connector as mysql
 from datetime import datetime
 import socket 
+import os
+from dotenv import load_dotenv
+
+
 
 
 class SqlServer():
@@ -28,23 +32,29 @@ class SqlServer():
             'S0002': 'Table or view not found (SQL Server specific)',
             'S1000': 'General error (non-specific error, may vary between drivers)',
         }
+        load_dotenv()
+        self.setServer()
+        self.setDatabase()
+        self.setUser()
+        self.setPassword()
+
 
     #Configuração Conexão
-    def setServer(self, server):
+    def setServer(self):
         
-        self.__server = server
+        self.__server = os.getenv('SERVER')
 
-    def setUser(self, user):
-        self.__username = user
+    def setUser(self):
+        self.__username = os.getenv('USERNAME')
 
-    def setDatabase(self, database):
-        self.__database = database
+    def setDatabase(self):
+        self.__database = os.getenv('DATABASE')
     
-    def setPassword(self, password):
-        self.__password = password
+    def setPassword(self):
+        self.__password = os.getenv('PASSWORD')
 
     def setCommand(self, command):
-        self.__command = command 
+        self.__command = command
 
     #Retornos conexão
     def getValidation(self):
@@ -150,23 +160,29 @@ class MysqlServer():
         self.__server = None
         self.__database =None
         self.__command= None
+        load_dotenv()
+        self.setServer()
+        self.setDatabase()
+        self.setUser()
+        self.setPassword()
         
         
         
-    def setServer(self, server):
-        self.__server = server
+    def setServer(self):
+        
+        self.__server = os.getenv('MYSQLSEVER')
 
-    def setUser(self, usuario):
-        self.__username = usuario
+    def setUser(self):
+        self.__username = os.getenv('MYSQLUSER')
+
+    def setDatabase(self):
+        self.__database = os.getenv('MYSQLDATABASE')
     
-    def setPassword(self, password):
-        self.__password = password
-    
-    def setDatabase(self, database):
-        self.__database = database 
-    
+    def setPassword(self):
+        self.__password = os.getenv('MYSQLPASSWORD')
+
     def setCommand(self, command):
-        self.__command=command
+        self.__command = command
 
 
     def stringGLPI(self):
